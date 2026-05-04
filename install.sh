@@ -32,13 +32,21 @@ echo ""
 
 # ── 2. System dependencies for compilation ───────────────────
 echo "[2/4] Checking system dependencies (g++, libboost, libtiff)..."
+# Try apt-get without sudo (works on some JupyterHub environments)
 if command -v apt-get &>/dev/null; then
+    apt-get install -y --quiet g++ libboost-all-dev libtiff-dev 2>/dev/null || \
     sudo apt-get install -y --quiet g++ libboost-all-dev libtiff-dev 2>/dev/null || \
-    echo "  ⚠ apt-get failed — dependencies may already be installed"
+    echo "  ⚠ Could not install via apt-get — will attempt compilation anyway"
 else
-    echo "  ⚠ apt-get not found — ensure g++, libboost-all-dev, libtiff-dev are installed"
+    echo "  ⚠ apt-get not found — attempting compilation with existing tools"
 fi
-echo "  ✓ System dependencies checked"
+# Verify g++ is available
+if command -v g++ &>/dev/null; then
+    echo "  ✓ g++ found: $(g++ --version | head -1)"
+else
+    echo "  ✗ g++ not found — compilation will fail"
+    exit 1
+fi
 echo ""
 
 # ── 3. Clone and compile C2F-W ───────────────────────────────
