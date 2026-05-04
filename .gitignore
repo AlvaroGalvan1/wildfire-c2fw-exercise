@@ -1,0 +1,22 @@
+# Runtime outputs (generated, not committed)
+instance/forest/
+instance/prairie/
+results/
+plots/
+
+# Keep placeholders
+!instance/.gitkeep
+!results/.gitkeep
+!plots/.gitkeep
+!data-raw/.gitkeep
+
+# C2F-W compiled binary
+C2F-W/
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
