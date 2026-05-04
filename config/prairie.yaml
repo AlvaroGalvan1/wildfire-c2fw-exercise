@@ -1,0 +1,53 @@
+town: prairie
+display_name: "Town of Prairies"
+
+# ── Paths (relative to repo root) ────────────────────────────
+data_raw: data-raw/prairie
+instance_dir: instance/prairie
+results_dir: results/prairie
+plots_dir: plots/prairie
+
+# ── Raw input filenames ───────────────────────────────────────
+files:
+  sb40:      Prairie_SB40.tif
+  elevation: Prairie_elevation.tif
+  depth:     Prairie_depth.tif
+  moist1:    Prairie_moist1.tif
+  moist10:   Prairie_moist10.tif
+  moist100:  Prairie_moist100.tif
+  rhof1:     Prairie_rhof1.tif
+  rhof10:    Prairie_rhof10.tif
+  rhof100:   Prairie_rhof100.tif
+  sav:       Prairie_SAV.tif
+  ignition:  Prairie_ignition.geojson
+  weather:   Prairie_Synoptic_Weather_Data.csv
+  buildings: Prairie_generated_buildings_fireprops.geojson
+
+# ── Projection ────────────────────────────────────────────────
+crs_out: "EPSG:5070"
+
+# ── Ignition ─────────────────────────────────────────────────
+ignition:
+  lat: null   # will be read from ignition GeoJSON
+  lon: null
+  start_time: null
+
+# ── Simulation ───────────────────────────────────────────────
+simulation:
+  nsims: 1             # increase to 100+ for burn probability
+  sim_model: S         # S = Scott & Burgan
+  duration_hours: 12
+  nthreads: 4
+  seed: 42
+  fmc: 10              # TBD — adjust after data exploration
+  weather_mode: rows
+
+# ── Weather processing ────────────────────────────────────────
+weather:
+  station_id: null     # update after exploring Prairie weather CSV
+  resample_freq: "1h"
+
+# ── Landscape ────────────────────────────────────────────────
+landscape:
+  cellsize_m: 27
+  nodata: -9999

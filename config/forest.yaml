@@ -1,0 +1,53 @@
+town: forest
+display_name: "Town of Forests"
+
+# ── Paths (relative to repo root) ────────────────────────────
+data_raw: data-raw/forest
+instance_dir: instance/forest
+results_dir: results/forest
+plots_dir: plots/forest
+
+# ── Raw input filenames ───────────────────────────────────────
+files:
+  sb40:      Forest_SB40.tif
+  elevation: Forest_elevation.tif
+  depth:     Forest_depth.tif
+  moist1:    Forest_moist1.tif
+  moist10:   Forest_moist10.tif
+  moist100:  Forest_moist100.tif
+  rhof1:     Forest_rhof1.tif
+  rhof10:    Forest_rhof10.tif
+  rhof100:   Forest_rhof100.tif
+  sav:       Forest_SAV.tif
+  ignition:  Forest_ignition.geojson
+  weather:   Forest_Synoptic_Weather_Data.csv
+  buildings: Forest_generated_buildings_fireprops.geojson
+
+# ── Projection ────────────────────────────────────────────────
+crs_out: "EPSG:5070"
+
+# ── Ignition ─────────────────────────────────────────────────
+ignition:
+  lat: 38.9014
+  lon: -120.0306
+  start_time: "2024-10-27T10:00:00-07:00"
+
+# ── Simulation ───────────────────────────────────────────────
+simulation:
+  nsims: 1             # increase to 100+ for burn probability
+  sim_model: S         # S = Scott & Burgan
+  duration_hours: 12
+  nthreads: 4
+  seed: 42
+  fmc: 4               # foliar moisture content %
+  weather_mode: rows   # C2F-W weather format
+
+# ── Weather processing ────────────────────────────────────────
+weather:
+  station_id: LIB11
+  resample_freq: "1h"  # aggregate 10-min obs to hourly
+
+# ── Landscape ────────────────────────────────────────────────
+landscape:
+  cellsize_m: 27       # reference grid cell size
+  nodata: -9999
