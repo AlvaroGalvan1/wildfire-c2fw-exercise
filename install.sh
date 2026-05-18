@@ -63,9 +63,13 @@ else
         echo "  ✓ C2F-W directory exists, skipping clone"
     fi
 
+    echo "  Installing conda build dependencies (libtiff, boost)..."
+    conda install -y -c conda-forge libtiff boost 2>&1 | tail -3
+
     echo "  Compiling C2F-W (this may take 1–2 minutes)..."
     cd "${C2FW_DIR}/Cell2Fire"
-    make -j4 2>&1 | tail -5
+    make CXXFLAGS="-m64 -fPIC -fno-strict-aliasing -fexceptions -fopenmp -DNDEBUG -DIL_STD -std=c++14 -O3 -I/opt/conda/include" \
+         LDFLAGS="-L/opt/conda/lib -ltiff -lgomp" 2>&1 | tail -5
     cd "${REPO_DIR}"
 
     if [ -f "${C2FW_BINARY}" ]; then

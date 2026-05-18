@@ -22,7 +22,7 @@ Each scenario covers a 5km × 5km area with synthetic spatial data including bui
 | Town | Grid | Burned Area | Buildings Exposed | Runtime |
 |---|---|---|---|---|
 | Town of Forests | 253×250 @ 27m | 263.2 ha | 332 / 4,498 (7.4%) | 2.3s |
-| Town of Prairies | TBD | TBD | TBD | TBD |
+| Town of Prairies | 213×210 @ 27.6m | 683.0 ha | 1,030 / 2,090 (49.3%) | — |
 
 Simulation mode: single deterministic run (`nsims=1`), 12-hour duration, Scott & Burgan fuel model.
 
