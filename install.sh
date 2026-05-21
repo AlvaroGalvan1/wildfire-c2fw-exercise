@@ -94,13 +94,20 @@ for town in forest prairie; do
 done
 echo ""
 
+ # Copy S&B lookup table to stable location
+echo "Copying S&B lookup table..."
+cp "${C2FW_DIR}/data/ScottAndBurgan/Zona_60-tif/spain_lookup_table.csv" \
+   "${REPO_DIR}/data-raw/spain_lookup_table.csv" 2>/dev/null && \
+   echo "  ✓ Lookup table saved to data-raw/" || \
+   echo "  ⚠ Lookup table copy failed"
+   
 # ── Summary ──────────────────────────────────────────────────
 echo "================================================="
 echo " Setup complete!"
 echo "================================================="
 echo ""
 echo "  Binary:  ${C2FW_BINARY}"
-echo "  Lookup:  ${C2FW_DIR}/data/ScottAndBurgan/Zona_60-tif/spain_lookup_table.csv"
+echo "  Lookup:  ${REPO_DIR}/data-raw/spain_lookup_table.csv"
 echo ""
 echo "  Next steps:"
 echo "  1. Add exercise data to data-raw/forest/ and data-raw/prairie/"
